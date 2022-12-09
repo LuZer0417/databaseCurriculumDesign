@@ -1,4 +1,7 @@
 package db.DAO.classDAOImpl;
 
-public class ManagerDAOImpl {
+import db.DAO.classDAO.ManagerDAO;
+import db.DAO.dbconnection.ConnectionImpl;
+
+public class ManagerDAOImpl  extends ConnectionImpl implements ManagerDAO {
 }
