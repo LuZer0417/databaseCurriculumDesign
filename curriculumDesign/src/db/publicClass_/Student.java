@@ -15,6 +15,9 @@ public class Student {
         this.tutor_id = tutor_id;
         this.s_type = s_type;
     }
+    public Student(){
+
+    }
 
     public String getS_id() {
         return s_id;

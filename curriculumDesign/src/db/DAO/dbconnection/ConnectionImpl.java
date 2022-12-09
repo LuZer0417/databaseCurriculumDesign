@@ -16,7 +16,8 @@ public class ConnectionImpl implements dbConnection {
     @Override
     public Connection getConnection() throws Exception {
         InetAddress addr = InetAddress.getLocalHost();// 获取本机的IP地址
-        String URL = "jdbc:sqlserver://" + addr.getHostAddress() + "; DatabaseName=education";
+        //String URL = "jdbc:sqlserver://" + addr.getHostAddress() + "; DatabaseName=curriculumDesign";
+        String URL = "jdbc:sqlserver://172.24.101.104:1433; DatabaseName=curriculumDesign";
         Connection con = null;
         //
         Properties properties = new Properties();// 新建一个配置文件
