@@ -1,4 +1,7 @@
 package db.DAO.classDAOImpl;
 
-public class TeacherDAOImpl {
+import db.DAO.classDAO.TeacherDAO;
+import db.DAO.dbconnection.ConnectionImpl;
+
+public class TeacherDAOImpl  extends ConnectionImpl implements TeacherDAO {
 }
