@@ -11,6 +11,10 @@ public class Manager {
         this.m_tel = m_tel;
     }
 
+    public Manager() {
+
+    }
+
     public String getM_id() {
         return m_id;
     }

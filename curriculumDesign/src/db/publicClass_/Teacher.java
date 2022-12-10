@@ -4,9 +4,9 @@ public class Teacher {
     private String t_id;
     private String t_name;
     private String major_id;
-    private boolean is_tutor;
-    private boolean is_leader;
-    private boolean is_teacher;
+    private boolean is_tutor;// 是否为导师
+    private boolean is_leader;// 是否为学科负责人
+    private boolean is_teacher;// 是否授课
 
     public Teacher(String t_id, String t_name, String major_id, boolean is_tutor, boolean is_leader, boolean is_teacher) {
         this.t_id = t_id;
@@ -15,6 +15,10 @@ public class Teacher {
         this.is_tutor = is_tutor;
         this.is_leader = is_leader;
         this.is_teacher = is_teacher;
+    }
+
+    public Teacher() {
+
     }
 
     public String getT_id() {

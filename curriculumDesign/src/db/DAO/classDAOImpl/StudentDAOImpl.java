@@ -1,4 +1,5 @@
 package db.DAO.classDAOImpl;
+import db.DAO.Utils.SearchCriteria;
 import db.DAO.classDAO.StudentDAO;
 import db.DAO.dbconnection.ConnectionImpl;
 import db.publicClass_.Student;
@@ -6,6 +7,7 @@ import db.publicClass_.Student;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 public class StudentDAOImpl extends ConnectionImpl implements StudentDAO {
     private static final String STUDENT_INSERT_SQL = "INSERT INTO student(s_id,s_name,major_id,tutor_id,s_type) VALUES(?,?,?,?,?) ";
@@ -27,6 +29,7 @@ public class StudentDAOImpl extends ConnectionImpl implements StudentDAO {
             psmt.setString(4, student.getTutor_id());
             psmt.setString(5, student.getS_type());
             psmt.executeUpdate();
+
             System.out.println("成功输入"+student.getS_name()+"同学的信息！");
             psmt.close();
         }catch(Exception e){
@@ -40,6 +43,7 @@ public class StudentDAOImpl extends ConnectionImpl implements StudentDAO {
         }
     }
 
+    // display 不是必须写的
     public void display(){
         Connection con = null;
         try{
@@ -144,6 +148,12 @@ public class StudentDAOImpl extends ConnectionImpl implements StudentDAO {
         }
 
         return student;
+    }
+
+    @Override
+    //
+    public List<Student> findStudent(SearchCriteria searchCriteria) {
+        return null;
     }
 
 }

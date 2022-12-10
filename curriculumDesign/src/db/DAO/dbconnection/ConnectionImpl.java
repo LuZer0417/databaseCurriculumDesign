@@ -11,17 +11,19 @@ import java.util.Properties;
 //
 public class ConnectionImpl implements dbConnection {
 
+    // 建议后期写一个小函数，可以自动写连接池文件
+
 
     //改为连接池连接法
     @Override
     public Connection getConnection() throws Exception {
         InetAddress addr = InetAddress.getLocalHost();// 获取本机的IP地址
-        //String URL = "jdbc:sqlserver://" + addr.getHostAddress() + "; DatabaseName=curriculumDesign";
-        String URL = "jdbc:sqlserver://172.24.101.104:1433; DatabaseName=curriculumDesign";
+        String URL = "jdbc:sqlserver://" + addr.getHostAddress() + "; DatabaseName=curriculumDesign";
+
         Connection con = null;
         //
         Properties properties = new Properties();// 新建一个配置文件
-        InputStream is = ConnectionImpl.class.getClassLoader().getResourceAsStream("druid.properties");// 读配置文件
+        InputStream is = ConnectionImpl.class.getClassLoader().getResourceAsStream("./db/DAO/druid.properties");// 读配置文件
         properties.load(is);// 使用properties对象加载is
         DataSource dataSource = DruidDataSourceFactory.createDataSource(properties);// druid底层是使用的工厂设计模式，去加载配置文件，创建DruidDataSource对象
         con = dataSource.getConnection(); //连接

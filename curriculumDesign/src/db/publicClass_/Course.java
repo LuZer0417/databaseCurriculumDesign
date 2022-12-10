@@ -5,7 +5,7 @@ public class Course {
     private String c_name;//学生姓名，非空
     private boolean is_compulsory;//该课程是否为必修，非空
     private int c_size;//课程容量，即学生数量
-    private int c_credit;//学分
+    private int c_credit;//学分 用double或者float
     private String c_target_stu;//面向的学生类型
     private String c_start_time;//课程开始时间，为smalldatetime类型
     private int c_hour;//课时数量
@@ -27,6 +27,10 @@ public class Course {
         this.c_with_TA = c_with_TA;
         this.assistant_id = assistant_id;
         this.c_teacher_id = c_teacher_id;
+    }
+
+    public Course() {
+
     }
 
     public String getC_id() {
