@@ -20,7 +20,7 @@ public class Main {
         // 测试course
         Course c = new Course("1234","lzz",false,1,1,"Messi","2053-01-01",1,1,true,"123","456");
         DAOFactory.getInstance().getCourseDAO().addCourse(c);
-        // 这里有个报错就是nvarchar到smalldatetime类型上的报错，其实就是格式的问题 要注意
+        //        // 这里有个报错就是nvarchar到smalldatetime类型上的报错，其实就是格式的问题 要注意
 
 
     }

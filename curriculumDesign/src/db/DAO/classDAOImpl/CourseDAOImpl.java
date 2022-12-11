@@ -151,4 +151,76 @@ public class CourseDAOImpl  extends ConnectionImpl implements CourseDAO {
     public List<Course> findStudent(SearchCriteria searchCriteria) {
         return null;
     }
+
+    //TA:学生功能3-对当前需要助教的课程进行提交助教申请
+    public void SearchCourse1(){
+        String sql="SELECT c_id,c_name,c_size,c_hour FROM course WHERE c_with_TA=0";
+        Connection con = null;
+        try{
+            con=getConnection();
+            PreparedStatement psmt = con.prepareStatement(sql);
+            ResultSet rs = psmt.executeQuery();
+            System.out.println("课程号    课程名称   课程容量    课时数");
+            while (rs.next()){
+                String cid=rs.getString(1);
+                String cname=rs.getString(2);
+                String csize=rs.getString(3);
+                String chour=rs.getString(4);
+                System.out.println(cid+" "+cname+" "+csize+" "+chour+" ");
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                con.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //TA:教师功能1-将课程状态设置为有助教
+    public void updateCourse(String c_id,Boolean with_TA) {
+        Connection con = null;
+        String sql="update course set c_with_TA=? where c_id=?";
+        try{
+            con = getConnection();
+            PreparedStatement psmt = con.prepareStatement(sql);
+            psmt.setString(1, Boolean.toString(with_TA));
+            psmt.setString(2,c_id);
+            psmt.executeUpdate();
+            psmt.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                con.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+
+
 }
+
+/*
+    Connection con = null;
+    String sql="";
+        try{
+                con = getConnection();
+                PreparedStatement psmt = con.prepareStatement(sql);
+                psmt.close();
+                }catch(Exception e){
+                e.printStackTrace();
+                }finally {
+                try{
+                con.close();
+                }catch (Exception e){
+                e.printStackTrace();
+                }
+                }*/
+
