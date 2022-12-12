@@ -12,7 +12,7 @@ public interface CourseDAO {
     void deleteCourse(String course_id);
     Course getCourse(String course_id);
     List<Course> findStudent(SearchCriteria searchCriteria);
-
-
+    public void SearchCourse1();
+    public void updateCourse(String c_id,Boolean with_TA);
 
 }

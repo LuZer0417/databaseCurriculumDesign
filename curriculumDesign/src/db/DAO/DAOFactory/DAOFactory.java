@@ -6,6 +6,12 @@ import db.DAO.classDAO.TeacherDAO;
 import db.DAO.classDAOImpl.CourseDAOImpl;
 import db.DAO.classDAOImpl.StudentDAOImpl;
 import db.DAO.classDAOImpl.TeacherDAOImpl;
+import db.TA.classDAO.assistantApplyDAO;
+import db.TA.classDAO.assistantEvaluateDAO;
+import db.TA.classDAO.courseAssistantDAO;
+import db.TA.classDAOImpl.assistantApplyImpl;
+import db.TA.classDAOImpl.assistantEvaluateImpl;
+import db.TA.classDAOImpl.courseAssistantImpl;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -35,6 +41,11 @@ public class DAOFactory {
     public static CourseDAO getCourseDAO(){
         return new CourseDAOImpl();
     }
+
+    public static assistantEvaluateDAO getassistantEvaluateDAO(){return new assistantEvaluateImpl(); }
+    public static assistantApplyDAO getassistantApplyDAO(){return new assistantApplyImpl();}
+
+    public static courseAssistantDAO getcourseAssistantDAO(){return new courseAssistantImpl();}
 
 
 
