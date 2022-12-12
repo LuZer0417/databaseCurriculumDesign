@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 public class courseAssistantImpl extends ConnectionImpl implements courseAssistantDAO {
 
     //添加一条完整的记录
+    @Override
     public void addAssistant(courseAssistant assis){
         Connection con = null;
         String sql="INSERT INTO course_assistant(s_id,c_id) VALUES(?,?)";
@@ -34,6 +35,7 @@ public class courseAssistantImpl extends ConnectionImpl implements courseAssista
     }
 
     //教师功能3：查看自身课程和助教的相关信息
+    @Override
     public void select_CourseAndStu(String t_id){
         Connection con = null;
         String sql="select c_id,c_name,c_size,c_start_time, s_id,s_name,major_id,tutor_id,s_type form course,student,course_assistant \n" +

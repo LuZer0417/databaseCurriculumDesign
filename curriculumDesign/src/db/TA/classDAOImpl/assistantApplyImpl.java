@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 public class assistantApplyImpl extends ConnectionImpl implements assistantApplyDAO {
 
     //学生功能3：对当前需要助教的课程进行提交助教申请
+    @Override
     public void addapply(assistantApply apply){
         Connection con = null;
         String sql="INSERT INTO  assistant_apply(s_id,c_id,choice_priority,apply_time,apply_status) VALUES(?,?,?,?,?)";
@@ -37,6 +38,7 @@ public class assistantApplyImpl extends ConnectionImpl implements assistantApply
     }
 
     //教师功能1：审批学生提交的助教申请，查看该c_id对应课程的申请列表
+    @Override
     public void search_apply(String c_id){
         Connection con = null;
         String sql="SELECT * FROM assistant_apply WHERE c_id=?";
@@ -66,6 +68,7 @@ public class assistantApplyImpl extends ConnectionImpl implements assistantApply
     }
 
     //教师功能1：审批学生提交的助教申请,设置为通过/不通过
+    @Override
     public void update_apply(String Status,String s_id,String c_id){
         Connection con = null;
         String sql="UPDATE assistant_apply SET apply_status=? WHERE s_id=? AND c_id=?";
