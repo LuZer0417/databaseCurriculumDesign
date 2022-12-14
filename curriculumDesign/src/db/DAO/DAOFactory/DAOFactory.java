@@ -1,5 +1,9 @@
 package db.DAO.DAOFactory;
 
+import db.ACA.classDAO.academicActivityDAO;
+import db.ACA.classDAO.academicInfoDAO;
+import db.ACA.classDAOImpl.academicActivityImpl;
+import db.ACA.classDAOImpl.academicInfoImpl;
 import db.DAO.classDAO.CourseDAO;
 import db.DAO.classDAO.StudentDAO;
 import db.DAO.classDAO.TeacherDAO;
@@ -46,6 +50,10 @@ public class DAOFactory {
     public static assistantApplyDAO getassistantApplyDAO(){return new assistantApplyImpl();}
 
     public static courseAssistantDAO getcourseAssistantDAO(){return new courseAssistantImpl();}
+
+    public static academicActivityDAO getacademicActivityDAO(){return new academicActivityImpl(); }
+
+    public static academicInfoDAO getacademicInfoDAO(){return new academicInfoImpl(); }
 
 
 
