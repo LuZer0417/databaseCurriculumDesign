@@ -152,22 +152,29 @@ public class CourseDAOImpl  extends ConnectionImpl implements CourseDAO {
         return null;
     }
 
-    //TA:学生功能3-对当前需要助教的课程进行提交助教申请
-    public void SearchCourse1(){
+    //TA:学生功能3-对当前需要助教的课程进行提交助教申请 && 管理员功能4
+    public int SearchCourse1(){
         String sql="SELECT c_id,c_name,c_size,c_hour FROM course WHERE c_with_TA=0";
         Connection con = null;
         try{
             con=getConnection();
             PreparedStatement psmt = con.prepareStatement(sql);
             ResultSet rs = psmt.executeQuery();
-            System.out.println("课程号    课程名称   课程容量    课时数");
+            System.out.println("以下课程还没有助教：");
+            System.out.println("课程号\t\t课程名称\t\t课程容量\t\t课时数");
+
+            int  rowCount = 0;
+
             while (rs.next()){
                 String cid=rs.getString(1);
                 String cname=rs.getString(2);
                 String csize=rs.getString(3);
                 String chour=rs.getString(4);
-                System.out.println(cid+" "+cname+" "+csize+" "+chour+" ");
+                System.out.println(cid+"\t\t"+cname+"\t\t"+csize+"\t\t"+chour);
+                rowCount++;// 看看几行
             }
+
+            return rowCount;
 
         }catch(Exception e){
             e.printStackTrace();
@@ -178,6 +185,8 @@ public class CourseDAOImpl  extends ConnectionImpl implements CourseDAO {
                 e.printStackTrace();
             }
         }
+
+        return 0;
     }
 
     //TA:教师功能1-将课程状态设置为有助教
@@ -207,20 +216,4 @@ public class CourseDAOImpl  extends ConnectionImpl implements CourseDAO {
 
 }
 
-/*
-    Connection con = null;
-    String sql="";
-        try{
-                con = getConnection();
-                PreparedStatement psmt = con.prepareStatement(sql);
-                psmt.close();
-                }catch(Exception e){
-                e.printStackTrace();
-                }finally {
-                try{
-                con.close();
-                }catch (Exception e){
-                e.printStackTrace();
-                }
-                }*/
 

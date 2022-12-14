@@ -14,7 +14,7 @@ public class assistantEvaluateImpl extends ConnectionImpl implements assistantEv
     //学生功能2：可以查看自身的助教成果（已通过）与助教记录（通过或不通过），若是返回了多条记录？需要检查一下。
     @Override
     public void SearchEvaluation(String s_id){
-        String sql="SELECT *FROM assistant_evaluate WHERE s_id=?";
+        String sql="SELECT * FROM assistant_evaluate WHERE s_id=?";
         Connection con = null;
         try{
             con=getConnection();
@@ -27,9 +27,15 @@ public class assistantEvaluateImpl extends ConnectionImpl implements assistantEv
                 String my_eva=rs.getString(3);
                 String t_eva=rs.getString(4);
                 String is_qualified=rs.getString(5);
-                System.out.println(sid+" "+cid+" "+my_eva+" "+t_eva+" "+is_qualified);
-            }
+                // 打印出想要的信息
 
+                System.out.println("查询结果如下：\n" +
+                        "学生学号为：" + sid+ "\n" +
+                        "课程号为：" + cid + "\n" +
+                        "我的自评：" + my_eva + "\n" +
+                        "教师评价：" + t_eva + "\n" +
+                        "是否被同意：" + is_qualified);
+            }
         }catch(Exception e){
             e.printStackTrace();
         }finally {
@@ -52,8 +58,9 @@ public class assistantEvaluateImpl extends ConnectionImpl implements assistantEv
             psmt.setString(1,my_eva);
             psmt.setString(2,s_id);
             psmt.setString(3,c_id);
-            psmt.executeUpdate();
+            psmt.executeUpdate();// 执行
             psmt.close();
+            System.out.println("完成助教自述成功！");
         }catch(Exception e){
             e.printStackTrace();
         }finally {
@@ -79,7 +86,8 @@ public class assistantEvaluateImpl extends ConnectionImpl implements assistantEv
             while (rs.next()){
                 String teacher_eva=rs.getString("teacher_eva");
                 String is_qualified=rs.getString("is_qualified");
-                System.out.println(teacher_eva+" "+is_qualified);
+                System.out.println("教师评价\t\t是否通过");
+                System.out.println(teacher_eva+"\t\t"+is_qualified);
             }
 
         }catch(Exception e){
@@ -119,6 +127,9 @@ public class assistantEvaluateImpl extends ConnectionImpl implements assistantEv
             }
         }
     }
+    // 教师功能1：更新对某个学生的评论
+
+
 
     //教师功能2：对学生的助教过程给予评价并评判通过与不通过
     @Override
@@ -133,6 +144,7 @@ public class assistantEvaluateImpl extends ConnectionImpl implements assistantEv
             psmt.setString(3,s_id);
             psmt.setString(4,c_id);
             psmt.executeUpdate();
+            System.out.println("更新教师评价成功！");
             psmt.close();
         }catch(Exception e){
             e.printStackTrace();
@@ -149,7 +161,7 @@ public class assistantEvaluateImpl extends ConnectionImpl implements assistantEv
     @Override
     public void select_ta_sum(){
         Connection con = null;
-        String sql="SELECT s_id,COUNT(*)AS TA_sum FROM assistant_evluate WHERE is_qualified=True GROUP BY s_id";
+        String sql="SELECT s_id,COUNT(*)AS TA_sum FROM assistant_evaluate WHERE is_qualified='通过' GROUP BY s_id";
         try{
             con = getConnection();
             PreparedStatement psmt = con.prepareStatement(sql);
@@ -157,7 +169,8 @@ public class assistantEvaluateImpl extends ConnectionImpl implements assistantEv
             while (rs.next()){
                 String sid=rs.getString(1);
                 Integer sum=rs.getInt(2);
-                System.out.println(sid+" "+sum);
+                System.out.println("学生学号\t\t助教次数");
+                System.out.println(sid+"\t\t"+sum);
             }
             psmt.close();
         }catch(Exception e){
@@ -186,7 +199,8 @@ public class assistantEvaluateImpl extends ConnectionImpl implements assistantEv
                 String my_eva=rs.getString(3);
                 String t_eva=rs.getString(4);
                 String is_qualified=rs.getString(5);
-                System.out.println(sid+" "+cid+" "+my_eva+" "+t_eva+" "+is_qualified);
+                System.out.println("学生学号\t\t课程号\t\t自评\t\t教师评价\t\t是否同意");
+                System.out.println(sid+"\t\t"+cid+"\t\t"+my_eva+"\t\t"+t_eva+"\t\t"+is_qualified);
             }
 
         }catch(Exception e){

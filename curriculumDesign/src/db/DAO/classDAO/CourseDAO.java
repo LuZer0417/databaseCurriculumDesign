@@ -12,7 +12,14 @@ public interface CourseDAO {
     void deleteCourse(String course_id);
     Course getCourse(String course_id);
     List<Course> findStudent(SearchCriteria searchCriteria);
-    public void SearchCourse1();
+
+    // 打印需要助教的课程
+
+    /**
+     *
+     * @return 没有助教的课程的门数
+     */
+    int SearchCourse1();
     public void updateCourse(String c_id,Boolean with_TA);
 
 }

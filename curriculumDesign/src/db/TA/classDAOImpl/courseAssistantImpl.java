@@ -38,10 +38,7 @@ public class courseAssistantImpl extends ConnectionImpl implements courseAssista
     @Override
     public void select_CourseAndStu(String t_id){
         Connection con = null;
-        String sql="select c_id,c_name,c_size,c_start_time, s_id,s_name,major_id,tutor_id,s_type form course,student,course_assistant \n" +
-                "where course.c_teacher_id =?\n" +
-                "and course.c_id = course_assistant.c_id\n" +
-                "and student.s_id = course_assistant.s_id";
+        String sql="select course.c_id,c_name,c_size,c_start_time, student.s_id,s_name,major_id,tutor_id,s_type from course,student,course_assistant where course.c_teacher_id =? and course.c_id = course_assistant.c_id and student.s_id = course_assistant.s_id";
         try{
             con = getConnection();
             PreparedStatement psmt = con.prepareStatement(sql);
@@ -57,7 +54,10 @@ public class courseAssistantImpl extends ConnectionImpl implements courseAssista
                 String majorid=rs.getString(7);
                 String tutorid=rs.getString(8);
                 String stype=rs.getString(9);
-                System.out.println("打印一下学生信息。补充");
+                System.out.println("课程号\t课程名称\t课程容量\t开始时间\t学生号\t学生名\t专业ID\t导师ID\t学生类型");
+                System.out.println(cid + "\t"+ cname+ "\t"+ csize + "\t"+ start_time + "\t"+ sid + "\t" +
+                        sname + "\t" + majorid + "\t" + tutorid + "\t"+ stype);
+
             }
             psmt.close();
         }catch(Exception e){
