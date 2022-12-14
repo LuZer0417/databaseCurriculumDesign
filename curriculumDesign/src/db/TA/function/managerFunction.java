@@ -16,8 +16,7 @@ public class managerFunction {
 
     //功能3：可以查看本学期所有的课程
     public void overviewCourse(){
-        // DAOFactory.getInstance().getCourseDAO()
-
+        DAOFactory.getInstance().getCourseDAO().getAllCourse();
     }
 
 

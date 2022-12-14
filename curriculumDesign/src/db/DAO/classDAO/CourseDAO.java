@@ -13,7 +13,7 @@ public interface CourseDAO {
     Course getCourse(String course_id);
     List<Course> findStudent(SearchCriteria searchCriteria);
 
-    // 打印需要助教的课程
+     void getAllCourse();
 
     /**
      *
