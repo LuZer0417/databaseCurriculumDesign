@@ -77,6 +77,7 @@ public class academicInfoImpl extends ConnectionImpl implements academicInfoDAO 
             psmt.setString(1, s_id);
             psmt.executeUpdate();
             psmt.close();
+            System.out.println("更新成功");
         }catch(Exception e){
             e.printStackTrace();
         }finally {

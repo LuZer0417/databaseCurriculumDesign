@@ -12,22 +12,26 @@ public class academicActivityImpl extends ConnectionImpl implements academicActi
 
     //学生功能1：查看个人可以参加的学术交流活动
     @Override
-    public void SearchACA_activities(){
+    public int SearchACA_activities(){
         Connection con = null;
         String sql="SELECT * FROM academic_activity";
+        System.out.println("活动ID\t活动名称\t活动地址\t所属学科\t活动日期");
+        int rsCount = 0;// 记录数量
         try{
             con = getConnection();
             PreparedStatement psmt = con.prepareStatement(sql);
             ResultSet rs = psmt.executeQuery();
             while (rs.next()){
+                rsCount++;
                 String aid=rs.getString(1);
-                String aname=rs.getString(2);
-                String a_address=rs.getString(3);
+                String aname = rs.getString(2);
+                String a_address = rs.getString(3);
                 String asubject=rs.getString(4);
                 String adate=rs.getString(5);
-                System.out.println(aid+" "+aname+" "+a_address+" "+asubject+" "+adate);
+                System.out.println(aid+"\t"+aname+"\t"+a_address+"\t"+asubject+"\t"+adate);
             }
             psmt.close();
+            return rsCount;
         }catch(Exception e){
             e.printStackTrace();
         }finally {
@@ -37,6 +41,7 @@ public class academicActivityImpl extends ConnectionImpl implements academicActi
                 e.printStackTrace();
             }
         }
+        return rsCount;
     }
 
     //教师功能1：使用关键字查询指定学术交流信息
@@ -99,19 +104,3 @@ public class academicActivityImpl extends ConnectionImpl implements academicActi
 
 }
 
-/*
-    Connection con = null;
-    String sql="";
-        try{
-                con = getConnection();
-                PreparedStatement psmt = con.prepareStatement(sql);
-                psmt.close();
-                }catch(Exception e){
-                e.printStackTrace();
-                }finally {
-                try{
-                con.close();
-                }catch (Exception e){
-                e.printStackTrace();
-                }
-                }*/
