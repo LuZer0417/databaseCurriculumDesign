@@ -154,7 +154,7 @@ public class CourseDAOImpl  extends ConnectionImpl implements CourseDAO {
 
     //TA:学生功能3-对当前需要助教的课程进行提交助教申请 && 管理员功能4
     public int SearchCourse1(){
-        String sql="SELECT c_id,c_name,c_size,c_hour FROM course WHERE c_with_TA=0";
+        String sql="SELECT c_id,c_name,c_size,c_hour FROM course WHERE c_with_TA=0 ORDER BY c_size DESC,c_hour DESC ";
         Connection con = null;
         try{
             con=getConnection();

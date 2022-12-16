@@ -102,6 +102,33 @@ public class assistantApplyImpl extends ConnectionImpl implements assistantApply
             }
         }
     }
+
+    //管理员功能4.2：
+    @Override
+    public void Select_stu(){
+        Connection con = null;
+        String sql="SELECT s_id,COUNT(*) AS rejected FROM assistant_apply GROUP BY s_id,apply_status HAVING(apply_status='不通过' AND COUNT(*)>=2)";
+        try{
+            con = getConnection();
+            PreparedStatement psmt = con.prepareStatement(sql);
+            ResultSet rs=psmt.executeQuery();
+            while(rs.next()){
+                String sid=rs.getString(1);
+                String rejected_times=rs.getString(2);
+                System.out.println("学生学号\t\t未通过申请次数");
+                System.out.println(sid + "\t\t" + rejected_times);
+            }
+            psmt.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                con.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
 
 
