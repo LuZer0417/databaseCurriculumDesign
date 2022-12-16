@@ -26,7 +26,7 @@ public class teacherFunction {
             // 添加对助教的评论（真的需要给评论嘛？我觉得不用
 //            assistantEvaluate assis_eva=new assistantEvaluate();
 //            DAOFactory.getInstance().getassistantEvaluateDAO().add_assistant_evaluate(assis_eva);
-            if(Status=="通过"){
+            if(Status=="通过"){// 判断
                 // 更改course表中是否有助教的选项
                 Boolean with_TA=Boolean.TRUE;
                 DAOFactory.getInstance().getCourseDAO().updateCourse(c_id,with_TA);

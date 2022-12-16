@@ -16,7 +16,7 @@ public class CourseDAOImpl  extends ConnectionImpl implements CourseDAO {
     private static final String COURSE_DELETE_SQL = "delete from course where c_id=?";
     private static final String COURSE_UPDATE_SQL = "update course set c_name=?,is_compulsory=?,c_size=?,c_credit=?,c_target_stu=?,c_start_time=?,c_hour=?,c_priority=?,c_with_TA=?,assistant_id=?,c_teacher_id=? where c_id=?";
     private static final String COURSE_SELECT_SQL = "SELECT c_id,c_name,is_compulsory,c_size,c_credit,c_target_stu,c_start_time,c_hour,c_priority,c_with_TA,assistant_id,c_teacher_id FROM course WHERE c_id=?";
-    //private static final String STUDENT_SELECT_ALL_SQL = "SELECT Sno,Sn,Sex,Class,Birthdate,Telephone FROM student WHERE Sno=?";
+    private static final String COURSE_SELECT_ALL_SQL = "SELECT c_id,c_name,is_compulsory,c_size,c_credit,c_target_stu,c_start_time,c_hour,c_priority,c_with_TA,assistant_id,c_teacher_id FROM course";
 
     @Override
     public void addCourse(Course course) {
@@ -106,6 +106,47 @@ public class CourseDAOImpl  extends ConnectionImpl implements CourseDAO {
         }
 
     }
+
+    public void getAllCourse() {
+        Connection con = null;
+        Course course = new Course();
+        try{
+            con = getConnection();
+            PreparedStatement psmt = con.prepareStatement(COURSE_SELECT_ALL_SQL);
+            ResultSet rs = psmt.executeQuery();
+            System.out.println("课程号\t课程名\t课程类型\t课容量\t学分\t目标学生\t开始时间\t学时\t课程优先级\t有助教\t助教号\t老师ID");
+            while (rs.next()){
+                course.setC_id(rs.getString("c_id"));
+                course.setC_name(rs.getString("c_name"));
+                course.setIs_compulsory(rs.getBoolean("is_compulsory"));
+                course.setC_size(rs.getInt("c_size"));
+                course.setC_credit(rs.getInt("c_credit"));
+                course.setC_target_stu(rs.getString("c_target_stu"));
+                course.setC_start_time(rs.getString("c_start_time"));
+                course.setC_hour(rs.getInt("c_hour"));
+                course.setC_priority(rs.getInt("c_priority"));
+                course.setC_with_TA(rs.getBoolean("c_with_TA"));
+                course.setAssistant_id(rs.getString("assistant_id"));
+                course.setC_teacher_id(rs.getString("c_teacher_id"));
+                System.out.println(course.getC_id() + "\t" + course.getC_name() + "\t" + course.isIs_compulsory() + "\t" +
+                        course.getC_size() + "\t" + course.getC_credit() + "\t" + course.getC_target_stu() + "\t" + course.getC_start_time() + "\t" +
+                        course.getC_hour() + "\t" + course.getC_priority() + "\t" + course.isC_with_TA() + "\t" + course.getAssistant_id() + "\t" +
+                        course.getC_teacher_id());
+            }
+            psmt.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                con.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 
     @Override
     public Course getCourse(String course_id) {

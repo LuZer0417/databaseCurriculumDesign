@@ -15,6 +15,10 @@ public class academicActivity {
         this.a_date = a_date;
     }
 
+    public academicActivity() {
+
+    }
+
     public String getA_id() {
         return a_id;
     }

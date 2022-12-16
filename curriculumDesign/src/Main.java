@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Main {
 
+    //-----------------------------------子系统1：研究生助教系统----------------------------------
     public static void studentSystem1(){
         //假设现在登录的学生身份：s_id = 0417的学生
         String s_id = "0123";
@@ -113,13 +114,7 @@ public class Main {
 
 
     }
-
-
-
-
-
-
-
+    // 选择系统1
 
     public static void system1(){
         System.out.println("1.学生身份登录");
@@ -140,12 +135,152 @@ public class Main {
 
     }
 
+    //-------------------------------子系统2：学术活动系统----------------------------------------------
+
+
+    public static void studentSystem2(){
+        //假设现在登录的学生身份：s_id = 0417的学生
+        String s_id = "0123";
+
+        System.out.println("------欢迎使用学术活动认证子系统(学生)------\n" +
+                "1.查看当前可以参加的学术交流活动\n" +
+                "2.向导师提交个人的学术交流信息\n" +
+                "3.查看学术交流信息的审批进度\n" +
+                "4.退出");
+        System.out.println("请输入你的选择：");
+        Scanner input = new Scanner(System.in);
+
+        //studentFunction对象
+        db.ACA.function.studentFunction sFunc = new db.ACA.function.studentFunction();
+
+        int choose;
+        choose = input.nextInt();
+        if(choose == 1){
+            sFunc.f1();
+        }
+        else if(choose == 2){
+            sFunc.f2(s_id);
+        }
+        else if(choose == 3){
+            Scanner in = new Scanner(System.in);
+            System.out.println("请输入活动编号：");
+            String a_id = in.nextLine();
+            sFunc.f3_1(a_id, s_id);
+            System.out.println("请问是否要撤销该条申请？(是/否)");
+            String c = in.nextLine();
+            if (c == "是"){
+                sFunc.f3_2(a_id, s_id);
+            }else if (c == "否"){
+                System.out.println("好的，不撤销了");
+            }
+        }
+        else if (choose == 4){
+            // 返回界面
+        }
+
+        //关闭scanner对象
+        input.close();
+    }
+
+    public static void teacherSystem2(){
+        //假设现在登录的教师身份：s_id = 0417的学生
+        String t_id = "0123";
+
+        System.out.println("------欢迎使用学术活动认证子系统(教师)------\n" +
+                "1.查询指定学术交流信息\n" +
+                "2.审核《研究生学术交流统计表》\n" +
+                "3.发布该学科可参与的学术交流活动信息\n" +
+                "4.退出");
+        System.out.println("请输入你的选择：");
+        Scanner input = new Scanner(System.in);
+
+        //studentFunction对象
+        db.ACA.function.teacherFunction tFunc = new db.ACA.function.teacherFunction();
+
+        int choose;
+        choose = input.nextInt();
+        if(choose == 1){
+            tFunc.f1();
+        }
+        else if(choose == 2){
+            tFunc.f2();
+        }
+        else if(choose == 3){
+            tFunc.f3();
+        }
+        else if (choose == 4){
+            // 返回界面
+        }
+
+        //关闭scanner对象
+        input.close();
+    }
+
+    public static void managerSystem2(){
+        //假设现在登录的学生身份：s_id = 0417的学生
+        String m_id = "021";
+
+        System.out.println("------欢迎使用学术活动认证子系统(管理员)------\n" +
+                "1.查询指定学术交流信息\n" +
+                "2.审核《研究生学术交流统计表》\n" +
+                "3.查看研究生对应的学术交流信息次数的毕业条件是否满足要求\n" +
+                "4.退出");
+        System.out.println("请输入你的选择：");
+        Scanner input = new Scanner(System.in);
+
+        //studentFunction对象
+        db.ACA.function.managerFunction mFunc = new db.ACA.function.managerFunction();
+
+        int choose;
+        choose = input.nextInt();
+        if(choose == 1){
+            mFunc.f1();
+        }
+        else if(choose == 2){
+            mFunc.f2();
+        }
+        else if(choose == 3){
+            mFunc.f3();
+        }
+        else if (choose == 4){
+            // 返回界面
+        }
+        //关闭scanner对象
+        input.close();
+    }
+    public static void system2(){
+        System.out.println("1.学生身份登录");
+        System.out.println("2.教师身份登录");
+        System.out.println("3.管理员身份登录");
+        Scanner input = new Scanner(System.in);
+        while (true){
+            String c = input.nextLine();
+            if(c.equals("1")){
+                studentSystem2();
+            }else if(c.equals("2")){
+                teacherSystem2();
+            }else if(c.equals("3")){
+                managerSystem2();
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+    //---------------------------------------------main----------------------------------------------------------
+
     public static void main(String[] args) {
         System.out.println("**********************\n欢迎使用研究生综合管理系统");
         System.out.println("1.研究生助教子系统\n" +
-                "2.子系统2\n" +
+                "2.研究生学术活动认证系统\n" +
                 "3.子系统3\n" +
-                "4.对当前学期的助教工作进行助教自述\n" +
+                "4.子系统4\n" +
                 "5.退出");
         System.out.println("*******BY 键值队*******");
         System.out.println("请输入你的选择：");
@@ -155,7 +290,8 @@ public class Main {
             if (c.equals("1")){
                 // 开始运行子系统 1
                 system1();
-            }
+            }else if (c.equals("2"))
+                system2();
             // 设置结束条件
             if(c.equals("0")){
                 break;

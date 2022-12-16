@@ -17,11 +17,15 @@ public class managerFunction {
 
     //功能3：可以查看本学期所有的课程,查看没成为助教的学生信息，并指定其为助教
     public void overviewCourse(){
+<<<<<<< HEAD
         DAOFactory.getInstance().getCourseDAO().SearchCourse1();
         DAOFactory.getInstance().getassistantApplyDAO().Select_stu();
         courseAssistant assis=new courseAssistant();
         DAOFactory.getInstance().getcourseAssistantDAO().addAssistant(assis);
 
+=======
+        DAOFactory.getInstance().getCourseDAO().getAllCourse();
+>>>>>>> 194454261115e456ec96c4379c7b2024f4daa58c
     }
 
 
