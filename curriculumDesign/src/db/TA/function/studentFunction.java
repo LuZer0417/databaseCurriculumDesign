@@ -35,7 +35,7 @@ public class studentFunction {
             System.out.println("现在时间是:" + now);
             apply.setApply_time(now);
             // 设置优先级
-            System.out.println("该课程优先级是：(0/1/2)");
+            System.out.println("申请的志愿优先级是：(1/2)");
             apply.setChoice_priority(input.nextLine());
             System.out.println("已经申请课程id：" + apply.getC_id());
             // 设置学生学号
