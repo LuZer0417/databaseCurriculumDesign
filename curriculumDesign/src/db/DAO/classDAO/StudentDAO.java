@@ -12,7 +12,7 @@ public interface StudentDAO {
     void updateStudent(Student student);
     void deleteStudent(String student_no);
     Student getStudent(String student_no);
-    List<Student> findStudent(SearchCriteria searchCriteria);
+    void Select1(String major_id);
 
 
 }

@@ -91,7 +91,7 @@ public class TeacherDAOImpl  extends ConnectionImpl implements TeacherDAO {
     }
 
     @Override
-    public Teacher getStudent(String teacher_id) {
+    public Teacher getTeacher(String teacher_id) {
         Connection con = null;
         Teacher teacher = new Teacher();
         try{
@@ -123,7 +123,35 @@ public class TeacherDAOImpl  extends ConnectionImpl implements TeacherDAO {
     }
 
     @Override
-    public List<Teacher> findStudent(SearchCriteria searchCriteria) {
-        return null;
+    public void Select1(String major_id){
+        Connection con = null;
+        String sql="SELECT FROM teacher WHERE major_id=?";
+        Teacher teacher = new Teacher();
+        try{
+            con = getConnection();
+            PreparedStatement psmt = con.prepareStatement(sql);
+            psmt.setString(1, major_id);
+            ResultSet rs = psmt.executeQuery();
+            while (rs.next()){
+                teacher.setT_id(rs.getString("teacher_id"));
+                teacher.setT_name(rs.getString("teacher_name"));
+                teacher.setMajor_id(rs.getString("major_id"));
+                teacher.setIs_tutor(rs.getBoolean("is_tutor"));
+                teacher.setIs_leader(rs.getBoolean("is_leader"));
+                teacher.setIs_teacher(rs.getBoolean("is_teacher"));
+            }
+            psmt.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                con.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
+
+
 }
+

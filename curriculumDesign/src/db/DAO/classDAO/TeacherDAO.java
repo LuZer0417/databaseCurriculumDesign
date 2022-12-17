@@ -11,8 +11,8 @@ public interface TeacherDAO {
     void addTeacher(Teacher teacher);
     void updateTeacher(Teacher teacher);
     void deleteTeacher(String teacher_id);
-    Teacher getStudent(String teacher_id);
-    List<Teacher> findStudent(SearchCriteria searchCriteria);
+    Teacher getTeacher(String teacher_id);
+    void Select1(String major_id);
 
 
 
