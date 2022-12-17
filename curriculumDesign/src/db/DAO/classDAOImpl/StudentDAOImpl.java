@@ -151,9 +151,50 @@ public class StudentDAOImpl extends ConnectionImpl implements StudentDAO {
     }
 
     @Override
-    //
-    public List<Student> findStudent(SearchCriteria searchCriteria) {
-        return null;
+    public void Select1(String major_id){
+        Connection con = null;
+        String sql="SELECT FROM student WHERE major_id=? ";
+        Student student=new Student();
+        try{
+            con = getConnection();
+            PreparedStatement psmt = con.prepareStatement(sql);
+            psmt.setString(1, major_id);
+            ResultSet rs = psmt.executeQuery();
+            while (rs.next()){
+                student.setS_id(rs.getString("s_id"));
+                student.setS_name(rs.getString("s_name"));
+                student.setMajor_id(rs.getString("major_id"));
+                student.setTutor_id(rs.getString("tutor_id"));
+                student.setS_type(rs.getString("s_type"));
+            }
+            psmt.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                con.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 
 }
+
+/*
+    Connection con = null;
+    String sql="";
+        try{
+                con = getConnection();
+                PreparedStatement psmt = con.prepareStatement(sql);
+                psmt.close();
+                }catch(Exception e){
+                e.printStackTrace();
+                }finally {
+                try{
+                con.close();
+                }catch (Exception e){
+                e.printStackTrace();
+                }
+                }*/
+

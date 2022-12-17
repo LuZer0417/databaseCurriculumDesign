@@ -10,6 +10,8 @@ import db.DAO.classDAO.TeacherDAO;
 import db.DAO.classDAOImpl.CourseDAOImpl;
 import db.DAO.classDAOImpl.StudentDAOImpl;
 import db.DAO.classDAOImpl.TeacherDAOImpl;
+import db.InfoManage.classDAO.loginDAO;
+import db.InfoManage.classDAOImpl.loginDAOImpl;
 import db.TA.classDAO.assistantApplyDAO;
 import db.TA.classDAO.assistantEvaluateDAO;
 import db.TA.classDAO.courseAssistantDAO;
@@ -54,6 +56,9 @@ public class DAOFactory {
     public static academicActivityDAO getacademicActivityDAO(){return new academicActivityImpl(); }
 
     public static academicInfoDAO getacademicInfoDAO(){return new academicInfoImpl(); }
+
+    public static loginDAO getloginDAO(){return new loginDAOImpl();}
+
 
 
 
