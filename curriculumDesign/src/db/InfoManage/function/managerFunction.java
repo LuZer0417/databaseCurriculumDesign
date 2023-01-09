@@ -6,20 +6,38 @@ import db.publicClass_.Course;
 import db.publicClass_.Student;
 import db.publicClass_.Teacher;
 
+import java.util.Scanner;
+
 public class managerFunction {
     //增加一个账户
     public void add_account(){
         login lg=new login();
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入用户账号");
+        lg.setId(input.nextLine());
+        System.out.println("请输入用户密码");
+        lg.setIdt(input.nextLine());
+        System.out.println("请输入身份(教师/学生/管理员)");
+        lg.setIdt(input.nextLine());
         DAOFactory.getInstance().getloginDAO().addInfo(lg);
     }
 
     //删除一个账户
-    public void del_account(String id){
+    public void del_account(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入要删除的用户账号：");
+        String id = input.nextLine();
+
         DAOFactory.getInstance().getloginDAO().delInfo(id);
     }
 
     //修改账户密码，可引入加密算法
     public void changepw(String pw){
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入要删除的用户账号：");
+        String id = input.nextLine();
+
+
         DAOFactory.getInstance().getloginDAO().updateInfo(pw);
     }
 
@@ -56,10 +74,5 @@ public class managerFunction {
     public void add_stu(Student stu){
         DAOFactory.getInstance().getStudentDAO().addStudent(stu);
     }
-
-
-
-
-
 
 }

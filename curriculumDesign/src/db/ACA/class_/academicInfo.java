@@ -17,6 +17,10 @@ public class academicInfo {
         this.m_audit = m_audit;
     }
 
+    public academicInfo() {
+
+    }
+
     public String getA_id() {
         return a_id;
     }

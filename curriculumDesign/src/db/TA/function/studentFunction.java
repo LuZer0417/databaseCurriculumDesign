@@ -63,6 +63,4 @@ public class studentFunction {
         String c_id = input.nextLine();
         DAOFactory.getInstance().getassistantEvaluateDAO().searcheva(s_id,c_id);
     }
-
-
 }

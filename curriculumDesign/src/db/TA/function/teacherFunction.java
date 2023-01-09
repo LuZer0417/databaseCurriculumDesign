@@ -78,7 +78,4 @@ public class teacherFunction {
         DAOFactory.getInstance().getCourseDAO().addCourse(course);
     }
 
-
-
-
 }

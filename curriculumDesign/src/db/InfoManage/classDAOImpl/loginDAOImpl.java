@@ -3,10 +3,10 @@ package db.InfoManage.classDAOImpl;
 import db.DAO.dbconnection.ConnectionImpl;
 import db.InfoManage.classDAO.loginDAO;
 import db.InfoManage.class_.login;
-import db.TA.classDAO.assistantApplyDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class loginDAOImpl extends ConnectionImpl implements loginDAO {
 
@@ -75,7 +75,42 @@ public class loginDAOImpl extends ConnectionImpl implements loginDAO {
         }
     }
 
+
+    public int checkLogin(String uid, String psw){
+        Connection con = null;
+        String sql="select * from login where id=? and password=?";
+        int resultCount = 0;
+        try{
+            con = getConnection();
+            PreparedStatement psmt = con.prepareStatement(sql);
+            psmt.setString(1, uid);
+            psmt.setString(2,psw);
+            ResultSet rs = psmt.executeQuery();
+            while (rs.next()){
+                resultCount++;
+                String sid=rs.getString(1);
+                String atimes=rs.getString(2);
+                System.out.println(sid+" "+atimes);
+            }
+            psmt.close();
+            return resultCount;
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                con.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return resultCount;
+    }
+
 }
+
+
+
+
 
 
 /*

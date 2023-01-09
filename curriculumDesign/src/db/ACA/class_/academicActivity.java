@@ -16,7 +16,6 @@ public class academicActivity {
     }
 
     public academicActivity() {
-
     }
 
     public String getA_id() {

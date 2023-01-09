@@ -6,6 +6,10 @@ import db.DAO.DAOFactory.DAOFactory;
 import java.util.Scanner;
 
 public class teacherFunction {
+
+    public teacherFunction() {
+    }
+
     public void f1(){
         Scanner input = new Scanner(System.in);
         System.out.println("请输入活动编号");

@@ -5,14 +5,19 @@ import db.DAO.DAOFactory.DAOFactory;
 import java.util.Scanner;
 
 public class studentFunction {
+
+    public studentFunction() {
+    }
+
     /**
      * @parameter 学生号s_id
      * 查看个人可以参加的学术交流活动
      * @return
      */
     public void f1(){
-        int count = DAOFactory.getInstance().getacademicActivityDAO().SearchACA_activities();
-        System.out.println("可参加的活动有" + count + "个");
+        DAOFactory.getInstance().getacademicActivityDAO().SearchACA_activities();
+        //int count = DAOFactory.getInstance().getacademicActivityDAO().SearchACA_activities();
+        //System.out.println("可参加的活动有" + count + "个");
     }
 
     /**
@@ -30,6 +35,11 @@ public class studentFunction {
         DAOFactory.getInstance().getacademicInfoDAO().SubmitInfo(a_id,a_name,s_id);
     }
 
+
+
+    /*
+    @para: 一个是活动编号，一个是学生学号
+     */
     public void f3_1(String a_id,String s_id){
         DAOFactory.getInstance().getacademicInfoDAO().ViewACA_info(a_id,s_id);
     }
