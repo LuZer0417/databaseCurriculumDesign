@@ -1,8 +1,8 @@
 package db.publicClass_;
 
 public class Course {
-    private String c_id;//学生id，非空，主键
-    private String c_name;//学生姓名，非空
+    private String c_id;//课程id，非空，主键
+    private String c_name;//课程名称，非空
     private boolean is_compulsory;//该课程是否为必修，非空
     private int c_size;//课程容量，即学生数量
     private int c_credit;//学分 用double或者float

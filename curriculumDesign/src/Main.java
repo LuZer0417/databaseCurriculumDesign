@@ -349,7 +349,6 @@ public class Main {
         choose = input.nextInt();
         if(choose == 1){
             mFunc.f1();
-
             System.out.println("执行完毕\n");
             System.out.println("按任意键后返回上个界面");
             input.nextLine();
@@ -660,7 +659,6 @@ public class Main {
         db.OutcomesSubsystem.functions.TeacherFunctions tFunc = new db.OutcomesSubsystem.functions.TeacherFunctions();
         while (true){
             String c = input.nextLine();
-
             if (c.equals("1")){
                 tFunc.resultSearch();
                 System.out.println("执行完毕\n");
@@ -674,7 +672,6 @@ public class Main {
                 System.out.println("按任意键后返回上个界面");
                 input.nextLine();
                 teacherSystem4();
-
             }else if (c.equals("3")){
                 homePage();
             }else if (c.equals("4")){
@@ -738,26 +735,153 @@ public class Main {
     }
 
     //-----------------------------------子系统5身份信息管理子系统------------------------------
-    public static void managerSystem5(){
-
-    }
-    // 这里还没写！
-    public static void teacherSystem5(){
-
-    }
-
-    public static void system5(){
-        System.out.println("1.管理员身份登录");
-        System.out.println("2.学科负责人身份登录");
+    public static void managerSystem5() throws Exception {
+        System.out.println("-----欢迎使用身份信息管理子系统(管理员)---\n" +
+                "1.增加一个用户\n" +
+                "2.删除一个账户\n" +
+                "3.修改账户的密码\n" +
+                "4.在系统中新增一门课程及有关信息\n" +
+                "5.在系统中删除一门课程\n" +
+                "6.在系统中修改一门课程的具体信息\n" +
+                "7.在系统中新增一名教师有关的信息\n" +
+                "8.在系统中删除一名教师的有关信息\n" +
+                "9.在系统中修改一名教师的有关信息\n" +
+                "10.将入学的新生与导师建立关联，注册学生信息\n" +
+                "11.返回主页面\n" +
+                "12.退出该子系统");
+        System.out.println("请输入你的选择：");
         Scanner input = new Scanner(System.in);
+        while (true){
+            String c = input.nextLine();
+            db.InfoManage.function.managerFunction mFunc = new db.InfoManage.function.managerFunction();
+            if (c.equals("1")){
+                mFunc.add_account();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                managerSystem5();
+
+            }else if (c.equals("2")) {
+                mFunc.del_account();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                managerSystem5();
+
+            }else if (c.equals("3")){
+                mFunc.changepw();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                managerSystem5();
+            }else if (c.equals("4")){
+                mFunc.add_crs();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                managerSystem5();
+            }else if (c.equals("5")){
+                mFunc.del_crs();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                managerSystem5();
+
+            }else if (c.equals("6")){
+                mFunc.add_crs();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                managerSystem5();
+
+            }else if (c.equals("7")){
+                mFunc.add_tea();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                managerSystem5();
+
+            }else if (c.equals("8")){
+                mFunc.del_tea();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                managerSystem5();
+
+            }else if (c.equals("9")){
+                mFunc.add_tea();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                managerSystem5();
+
+            }else if (c.equals("10")){
+                mFunc.add_stu();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                managerSystem5();
+
+            }else if (c.equals("11")){
+                homePage();
+            }else if (c.equals("12")){
+                System.out.println("Bye!");
+                return;
+            }
+        }
+
+    }
+
+    public static void teacherSystem5() throws Exception {
+        System.out.println("------欢迎使用身份信息管理子系统(教师)------\n" +
+                "1.查看某具体学科下的所有导师信息\n" +
+                "2.可查看某具体学科下的所有学生信息\n" +
+                "3.返回主页面\n" +
+                "4.结束系统");
+        System.out.println("请输入你的选择：");
+        Scanner input = new Scanner(System.in);
+        db.InfoManage.function.teacherFunction tFunc = new db.InfoManage.function.teacherFunction();
+        while (true){
+            String c = input.nextLine();
+            if (c.equals("1")){
+                tFunc.f1();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                teacherSystem5();
+
+            }else if (c.equals("2")) {
+                tFunc.f2();
+                System.out.println("执行完毕\n");
+                System.out.println("按任意键后返回上个界面");
+                input.nextLine();
+                teacherSystem5();
+            }else if (c.equals("3")){
+                homePage();
+            }else if (c.equals("4")){
+                System.out.println("Bye!");
+                return;
+            }
+        }
+
+    }
+
+    public static void system5() throws Exception {
         while (true){
             if(idf.equals("管理员")){
                 managerSystem5();
+                break;
             }else if(idf.equals("教师")){
                 teacherSystem5();
+                break;
+            }else if(idf.equals("学生")){
+                System.out.println("您没有权限运行该子系统");
+                break;
             }
         }
     }
+
+
 
     // -------------------------------homepage 主页面--------------------------------
 
@@ -807,8 +931,6 @@ public class Main {
     }
 
 
-
-
     //---------------------------------------------main----------------------------------------------------------
 
     public static void main(String[] args) throws Exception {
@@ -836,13 +958,11 @@ public class Main {
             }else {
                 System.out.println("登录失败");
             }
-        }
 
+
+        }
         // 操作主页面
         homePage();
-
     }
 
 }
-
-

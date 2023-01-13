@@ -35,7 +35,6 @@ public class DAOFactory {
 
     }
 
-
     //后面函数理解：getinstance用来返回一个工厂实例，返回的工厂实例再去调用自身的方法
     public static DAOFactory getInstance(){
         return daoFactory;
